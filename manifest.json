@@ -2,7 +2,7 @@
   "name": "Guitar Game CCB",
   "short_name": "Guitar Game",
   "description": "Jogo de guitarra estilo Guitar Hero com hinos CCB",
-  "start_url": "./guitarhero.html",
+  "start_url": "./index.html",
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#04040e",

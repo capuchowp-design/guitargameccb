@@ -29,6 +29,7 @@ jobs:
             case "$f" in package.json|package-lock.json|capacitor.config.json) continue;; esac
             cp "$f" www/
           done
+          [ -d hinos ] && cp -r hinos www/hinos
           ls www
 
       - name: Criar projeto Android

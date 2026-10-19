@@ -24,7 +24,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 /* ── HIGH SCORES ── */
 .scores-section{width:100%;max-width:480px;}
 .scores-title{font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-bottom:8px;padding-left:2px;}
-.scores-list{display:flex;flex-direction:column;gap:5px;max-height:18vh;overflow-y:auto;}
+.scores-list{display:flex;flex-direction:column;gap:5px;max-height:11vh;overflow-y:auto;}
 .scores-list::-webkit-scrollbar{width:3px;}.scores-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 .score-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
 .score-rank{font-family:'Orbitron',monospace;font-size:11px;color:var(--dim);width:18px;text-align:center;flex-shrink:0;}
@@ -40,7 +40,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 .screen.hidden{opacity:0;pointer-events:none;transform:scale(.97);}
 
 /* ── TELA INICIAL ── */
-#screenHome{gap:14px;padding:16px;background:radial-gradient(ellipse at 50% 30%, #0a0a2a 0%, #04040e 70%);}
+#screenHome{gap:10px;padding:max(14px,env(safe-area-inset-top)) 14px max(12px,env(safe-area-inset-bottom));justify-content:flex-start;overflow:hidden;background:radial-gradient(ellipse at 50% 30%, #0a0a2a 0%, #04040e 70%);}
+#screenHome>*{flex-shrink:0;}
+#screenHome>.hino-list{flex-shrink:1;}
 .logo-wrap{text-align:center;}
 .logo-title{font-family:'Orbitron',monospace;font-size:clamp(22px,6.5vw,48px);font-weight:900;
   background:linear-gradient(135deg,#ff4466,#ff8800,#ffdd00,#44dd44,#44aaff,#cc44ff);
@@ -48,7 +50,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
   text-shadow:none;line-height:1.1;letter-spacing:2px;}
 .logo-sub{font-family:'Rajdhani';font-size:14px;color:var(--dim);letter-spacing:4px;text-transform:uppercase;margin-top:4px;}
 
-.song-list{width:100%;max-width:480px;display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow-y:auto;padding-right:4px;}
+.song-list{width:100%;max-width:480px;display:flex;flex-direction:column;gap:8px;max-height:20vh;overflow-y:auto;padding-right:4px;}
+.song-list-title{font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;padding-left:2px;}
+
+/* ── BIBLIOTECA DE HINOS ── */
+.ver-bar{display:flex;gap:6px;width:100%;max-width:480px;}
+.ver-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 4px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--txt);font-family:'Rajdhani',sans-serif;cursor:pointer;transition:all .2s;}
+.ver-btn span{font-size:18px;line-height:1.1;}
+.ver-btn b{font-size:12px;line-height:1.1;text-align:center;font-weight:700;}
+.ver-btn i{font-size:9px;font-style:normal;color:var(--dim);}
+.ver-btn.on{border-color:#44aaff;background:rgba(68,170,255,0.18);box-shadow:0 0 14px rgba(68,170,255,0.25);}
+.hino-search{width:100%;max-width:480px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--txt);font-family:'Rajdhani',sans-serif;font-size:15px;outline:none;}
+.hino-search:focus{border-color:rgba(68,170,255,0.6);}
+.hino-list{width:100%;max-width:480px;flex:1;min-height:90px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding-right:4px;-webkit-overflow-scrolling:touch;}
+.hino-list::-webkit-scrollbar{width:3px;}.hino-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.hino-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--txt);font-family:'Rajdhani',sans-serif;text-align:left;cursor:pointer;flex-shrink:0;transition:border-color .2s;}
+.hino-item:active,.hino-item:hover{border-color:rgba(255,255,255,0.2);}
+.hino-item b{font-family:'Orbitron',monospace;font-size:12px;color:#44aaff;width:34px;flex-shrink:0;}
+.hino-item span{flex:1;min-width:0;font-size:14px;font-weight:600;line-height:1.2;}
+.hino-item i{width:28px;height:28px;border-radius:50%;background:rgba(68,170,255,0.2);border:1.5px solid #44aaff;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;flex-shrink:0;}
+.hino-empty{text-align:center;color:var(--dim);padding:24px 12px;font-size:14px;}
 .song-list::-webkit-scrollbar{width:3px;} .song-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 .song-card{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;position:relative;}
 .song-card::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03));opacity:0;transition:opacity .2s;}
@@ -65,7 +86,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 .song-badge{font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:4px;background:rgba(255,221,0,0.15);border:1px solid rgba(255,221,0,0.4);color:#ffdd00;text-transform:uppercase;margin-top:4px;display:inline-block;}
 .empty-list{text-align:center;color:var(--dim);padding:32px 16px;font-size:14px;line-height:1.6;}
 
-.btn-upload{display:flex;align-items:center;gap:10px;padding:14px 28px;background:linear-gradient(135deg,rgba(68,170,255,0.2),rgba(204,68,255,0.2));border:1.5px solid rgba(68,170,255,0.5);border-radius:12px;color:var(--txt);font-family:'Rajdhani';font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all .2s;}
+.btn-upload{display:flex;align-items:center;gap:10px;padding:10px 22px;background:linear-gradient(135deg,rgba(68,170,255,0.2),rgba(204,68,255,0.2));border:1.5px solid rgba(68,170,255,0.5);border-radius:12px;color:var(--txt);font-family:'Rajdhani';font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all .2s;}
 .btn-upload:hover{background:linear-gradient(135deg,rgba(68,170,255,0.35),rgba(204,68,255,0.35));transform:translateY(-2px);}
 .btn-upload svg{flex-shrink:0;}
 #fileInput{display:none;}
@@ -75,11 +96,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 #gameCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;}
 
 /* HUD superior */
-.hud-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;z-index:10;background:linear-gradient(to bottom,rgba(4,4,14,0.9),transparent);pointer-events:none;}
+.hud-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 64px 10px 16px;z-index:10;background:linear-gradient(to bottom,rgba(4,4,14,0.9),transparent);pointer-events:none;}
 .hud-score-wrap{text-align:left;}
 .hud-score-label{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;}
 .hud-score{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:#fff;text-shadow:0 0 20px #44aaff;}
+.hud-mid{text-align:center;max-width:160px;}
 .hud-song-name{font-size:12px;font-weight:700;color:var(--dim);text-align:center;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hud-song-sub{font-size:10px;color:rgba(68,170,255,0.8);text-align:center;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px;}
 .hud-combo-wrap{text-align:right;}
 .hud-combo-label{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;}
 .hud-combo{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;color:#ffdd00;text-shadow:0 0 20px #ffdd00;}
@@ -178,15 +201,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 <div id="screenHome" class="screen">
   <div class="logo-wrap">
     <div class="logo-title">GUITAR GAME CCB</div>
-    <div class="logo-sub">Guitar Hero · MIDI</div>
+    <div class="logo-sub">Guitar Hero · 480 Hinos</div>
   </div>
 
-  <div class="song-list" id="songList">
-    <div class="empty-list">
-      🎸 Nenhuma música carregada ainda<br>
-      <span style="font-size:12px">Faça upload de um arquivo <strong>.mid</strong> para começar</span>
-    </div>
+  <div class="ver-bar" id="verBar">
+    <button class="ver-btn" data-v="s" type="button"><span>🎼</span><b>Soprano</b><i>só a melodia</i></button>
+    <button class="ver-btn" data-v="b" type="button"><span>🎸</span><b>Soprano + Baixo</b><i>melodia e baixo</i></button>
+    <button class="ver-btn" data-v="a" type="button"><span>🎶</span><b>Soprano + Acomp.</b><i>dedilhado</i></button>
   </div>
+  <input type="search" id="hinoQ" class="hino-search" placeholder="🔍 Buscar hino por número ou título" autocomplete="off">
+  <div class="hino-list" id="hinoList"><div class="hino-empty">Carregando hinos…</div></div>
+
+  <div class="song-list" id="songList" style="display:none"></div>
 
   <div class="scores-section" id="scoresSection" style="display:none">
     <div class="scores-title">🏆 Melhores Pontuações</div>
@@ -195,7 +221,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
 
   <label class="btn-upload" for="fileInput">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Carregar MIDI
+    Carregar MIDI próprio
   </label>
   <input type="file" id="fileInput" accept=".mid,.midi" multiple>
 
@@ -240,7 +266,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-famil
       <div class="hud-score-label">Score</div>
       <div class="hud-score" id="hudScore">0</div>
     </div>
-    <div class="hud-song-name" id="hudSongName">—</div>
+    <div class="hud-mid">
+      <div class="hud-song-name" id="hudSongName">—</div>
+      <div class="hud-song-sub" id="hudSongSub"></div>
+    </div>
     <div class="hud-combo-wrap">
       <div class="hud-combo-label">Combo</div>
       <div class="hud-combo" id="hudCombo">x0</div>
@@ -527,11 +556,9 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
 // ══════════════════════════════════════════════════════
 function renderSongList() {
   const el = document.getElementById('songList');
-  if (!songs.length) {
-    el.innerHTML = '<div class="empty-list">🎸 Nenhuma música carregada ainda<br><span style="font-size:12px">Faça upload de um arquivo <strong>.mid</strong> para começar</span></div>';
-    return;
-  }
-  el.innerHTML = songs.map((s,i) => {
+  if (!songs.length) { el.style.display = 'none'; el.innerHTML = ''; return; }
+  el.style.display = 'flex';
+  el.innerHTML = '<div class="song-list-title">Meus MIDIs</div>' + songs.map((s,i) => {
     const dur = Math.floor(s.dur/60)+':'+(Math.floor(s.dur%60)+'').padStart(2,'0');
     const noteCount = s.notes.length;
     // Dificuldade estimada por densidade (notas/segundo)
@@ -558,14 +585,16 @@ function renderSongList() {
 // ══════════════════════════════════════════════════════
 // INICIAR JOGO
 // ══════════════════════════════════════════════════════
-function startSong(idx) {
-  currentSong = songs[idx];
+function startSong(ref) {
+  currentSong = (typeof ref === 'number') ? songs[ref] : ref;
   notes = currentSong.notes.map(n=>({...n, hit:false, missed:false}));
   score=0; combo=0; maxCombo=0; totalHits=0; totalMisses=0;
   curTime=-LEAD_IN; playing=false; paused=false; particles=[]; hitAnims=[];
   strPressed.fill(false);
 
-  document.getElementById('hudSongName').textContent = currentSong.name;
+  document.getElementById('hudSongName').textContent = currentSong.hudName || currentSong.name;
+  document.getElementById('hudSongSub').textContent = currentSong.sub || '';
+  document.getElementById('btnPause').textContent = '⏸';
   updateHUD();
 
   showScreen('screenGame');
@@ -993,9 +1022,8 @@ document.getElementById('btnResume').addEventListener('click',()=>{
 document.getElementById('btnQuit').addEventListener('click',()=>goHome());
 document.getElementById('btnBackHome').addEventListener('click',()=>goHome());
 document.getElementById('btnPlayAgain').addEventListener('click',()=>{
-  const idx=songs.indexOf(currentSong);
   document.getElementById('resultOverlay').classList.add('hidden');
-  startSong(idx);
+  startSong(currentSong);
 });
 
 function goHome(){
@@ -1019,39 +1047,90 @@ function showToast(msg){
   clearTimeout(toastTO); toastTO=setTimeout(()=>el.classList.remove('show'),2800);
 }
 
-const LIBRARY = [
-  { name: "Hino 01", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAABm3iQO2SBcIA7QACQO2R4gDtAAJA7ZHiAO0AAkD5kgXCAPkAAkD5kgXCQN2SBcIA+QACQPGR4gDxAAJA8ZHiAPEAAkDtkg2CQQGSBcIBAQACQQGR4gEBAAJBAZHiAO0AAkD5kgXCAPkAAkDtkeIA7QACQO2R4gDtAAJA7ZIFwgDdAAJA5ZHiAOUAAkDdkeIA3QACQOWSDYIA7QACQO2SBcIA7QACQO2R4gDtAAJA7ZHiAO0AAkD5kgXCAPkAAkD5kgXCAQEAAkEBkgXCAQEAAkEJkeIBCQACQQ2R4gENAAJBCZINggEJAAJBDZIFwgENAAJBCZHiAQkAAkEBkeIA+QACQPmSBcIA+QACQO2R4gDtAAJA+ZHiAPkAAkD5kgXCAPkAAkD5keIA+QACQPGR4gDxAAJA7ZINggEBAAJBAZIFwgEBAAJBCZHiAQkAAkENkeIBDQACQQ2SBcIA5QACQN2SCaIA3QACQOWR4gDtAAJA7ZIFwgDtAAJA7ZHiAOUAAkDlkeIA5QACQN2SGSIBDQACAO0AAgDdAAP8vAA==" },
-  { name: "Hino 01 — com Baixo", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAADT3iQO2QAkCtkgXCAO0AAgCtAAJA7ZACQK2R4gDtAAJA7ZHiAO0AAgCtAAJA+ZACQKmSBcIA+QACAKkAAkD5kAJArZIFwkDdkAJAwZIFwgD5AAIAwQACQPGQAkC1keIA8QACQPGR4gDxAAIArQACQO2QAkCtkeIAtQACQLWR4gC1AAJAvZHiQMmR4gC9AAJBAZACQMGSBcIBAQACAMEAAkEBkAJAwZHiAQEAAkEBkeIA7QACAK0AAkD5kAJArZIFwgD5AAIArQACQO2QAkCtkeIA7QACAK0AAkDtkAJAqZHiAO0AAgCpAAJA7ZACQKGSBcIA3QACAMEAAkDlkAJAtZHiAOUAAkDdkeIA3QACAMkAAkDlkAJAyZHiALUAAkDBkeIAwQACQL2R4gC9AAJAtZHiAO0AAgChAAJA7ZACQK2SBcIA7QACAK0AAkDtkAJArZHiAO0AAkDtkeIA7QACAK0AAkD5kAJAqZIFwgD5AAIAqQACQPmQAkCtkgXCAQEAAgC1AAJBAZACQMGSBcIBAQACAMEAAkEJkAJAtZHiAQkAAgCtAAJBDZACQK2R4gENAAIAyQACQQmQAkDJkgXCALUAAkDBkgXCAQkAAgDBAAJBDZACQL2SBcIBDQACAL0AAkEJkAJAwZHiAQkAAkEBkeIA+QACAK0AAkD5kAJArZIFwgD5AAIArQACQO2QAkCtkeIA7QACQPmR4gD5AAIAyQACQPmQAkDJkgXCAPkAAgCtAAJA+ZACQKGR4gD5AAIAoQACQPGQAkCpkeIA8QACAKkAAkDtkAJArZHiAMEAAkC1keIAtQACQL2R4gDJAAJAyZHiAQEAAgC9AAJBAZACQMGR4gDBAAJAvZHiAQEAAgC9AAJBCZACQLWR4gEJAAIArQACQQ2QAkCtkeIBDQACAK0AAkENkAJArZHiAK0AAkCpkeIA5QACAKkAAkDdkAJAoZIJogDdAAIAtQACQOWQAkDBkeIA7QACAMEAAkDtkAJAtZHiAKEAAkChkeIA7QACAKEAAkDtkAJAqZHiAOUAAgC1AAJA5ZACQLWR4gDlAAIAqQACQN2QAkCtkgXCAQ0AAkENkhFiAQ0AAgDtAAIA3QACAMkAAgC1AAIArQAD/LwA=" },
-  { name: "Hino 01 — Fingerstyle", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAAD5niQO2QAkCtkeJA3ZHiAO0AAgCtAAJA7ZACQK2R4gDtAAJA7ZHiAO0AAgCtAAJA+ZACQKmR4gDdAAJA3ZHiAPkAAgCpAAJA+ZACQK2R4kDJkeIA3QACQN2QAkDBkeIAyQACQMmR4gD5AAIAwQACQPGQAkC1keIA8QACQPGR4gDxAAIArQACQO2QAkCtkeIAtQACQLWR4gC1AAJAvZHiAMkAAkDJkeIAvQACQQGQAkDBkeIA3QACQN2R4gEBAAIAwQACQQGQAkDBkeIBAQACQQGR4gDtAAIArQACQPmQAkCtkeIA3QACQN2R4gD5AAIArQACQO2QAkCtkeIA7QACAK0AAkDtkAJAqZHiAO0AAgCpAAJA7ZACQKGR4gDdAAJA3ZHiAN0AAgDBAAJA5ZACQLWR4gDlAAJA3ZHiAN0AAgDJAAJA5ZACQMmR4gC1AAJAwZHiAMEAAkC9keIAvQACQLWR4gDtAAIAoQACQO2QAkCtkeIA5QACQN2R4gDtAAIArQACQO2QAkCtkeIA7QACQO2R4gDtAAIArQACQPmQAkCpkeIA3QACQN2R4gD5AAIAqQACQPmQAkCtkeIA3QACQN2R4gEBAAIAtQACQQGQAkDBkeIA3QACQN2R4gEBAAIAwQACQQmQAkC1keIBCQACAK0AAkENkAJArZHiAQ0AAgDJAAJBCZACQMmR4gDdAAJA5ZHiALUAAkDBkeIA5QACQOWR4gEJAAIAwQACQQ2QAkC9keIA5QACQN2R4gENAAIAvQACQQmQAkDBkeIBCQACQQGR4gD5AAIArQACQPmQAkCtkeIA3QACQN2R4gD5AAIArQACQO2QAkCtkeIA7QACQPmR4gD5AAIAyQACQPmQAkDJkeIA3QACQOWR4gD5AAIArQACQPmQAkChkeIA+QACAKEAAkDxkAJAqZHiAPEAAgCpAAJA7ZACQK2R4gDBAAJAtZHiALUAAkC9keIAyQACQMmR4gEBAAIAvQACQQGQAkDBkeIAwQACQL2R4gEBAAIAvQACQQmQAkC1keIBCQACAK0AAkENkAJArZHiAQ0AAgCtAAJBDZACQK2R4gCtAAJAqZHiAOUAAgCpAAJA3ZACQKGSCaIA3QACALUAAkDlkAJAwZHiAO0AAgDBAAJA7ZACQLWR4gChAAJAoZHiAO0AAgChAAJA7ZACQKmR4gDlAAIAtQACQOWQAkC1keIA5QACAKkAAkDdkAJArZHiALUAAkC9keIBDQACAMkAAkDJkeIAvQACQL2R4gDdAAIArQACQQ2QAkDdkAJArZIJogENAAIA7QACAN0AAgDJAAIAvQACAK0AA/y8A" },
-  { name: "Hino 02", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAAB13iQO2SBcIA7QACQO2SBcIA7QACQO2SBcIA7QACQPGSBcIA8QACQO2SBcIA7QACQO2SDYJA5ZIFwgDlAAJA3ZIFwgDdAAJA3ZIFwkEBkgXCAO0AAkD5kgXCAPkAAkDxkgXCAPEAAkDtkhVCAO0AAkDxkgXCAPEAAkD5kgXCAQEAAkENkgXCAQ0AAkENkgXCAQ0AAkEJkgXCAQkAAkEJkg2CAQkAAkEBkgXCAPkAAkD5kgXCAPkAAkDxkgXCAPEAAkD5kgXCAPkAAkDtkgXCAN0AAkDdkgXCAN0AAkDlkhVCAOUAAkDlkgXCAO0AAkDtkgXCAO0AAkDxkgXCAPEAAkD5kgXCAQEAAkEBkgXCAQEAAkEBkg2CAPkAAkD5kgXCAQEAAkENkgXCAQ0AAkENkgmiAQ0AAkEJkeIBCQACQQGSBcIA+QACQO2SBcIA7QACQPGSFUIA5QACQOWSBcIA8QACQO2SBcIA7QACQO2SBcIA7QACQPGSBcIA8QACQO2SBcIA7QACQO2SDYIA5QACQOWSBcIA5QACQN2SBcIA3QACQN2SBcIA3QACQOWSBcIA5QACQN2SBcJA2ZIFwgDdAAJA3ZIRYgEBAAIA7QACAN0AAgDZAAP8vAA==" },
-  { name: "Hino 02 — com Baixo", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAADd3iQO2QAkCtkgXCAO0AAgCtAAJA7ZACQK2SBcIA7QACAK0AAkDtkAJArZIFwgDtAAIArQACQPGQAkCpkgXCAPEAAgCpAAJA7ZACQK2SBcIA7QACQO2QAkDJkg2CQOWQAkDBkgXCAOUAAgDBAAJA3ZACQL2SBcIA3QACAL0AAkDdkAJAwZIFwgDBAAJBAZACQMGSBcIA7QACAMkAAkD5kAJAyZIFwgD5AAIArQACQPGQAkCpkgXCAPEAAgCpAAJA7ZACQK2SFUIA7QACAMEAAkDxkAJAtZIFwgDxAAIAtQACQPmQAkC9kgXCAQEAAgC9AAJBDZACQL2SBcIBDQACAL0AAkENkAJAvZIFwgENAAIAyQACQQmQAkDJkgXCAQkAAgC9AAJBCZACQMGSDYIBCQACAMEAAkEBkAJAwZIFwgD5AAIAwQACQPmQAkC9kgXCAPkAAgC9AAJA8ZACQLWSBcIA8QACAK0AAkD5kAJAqZIFwgD5AAIAqQACQO2QAkCtkgXCAN0AAgDJAAJA3ZACQNGSBcIA3QACANEAAkDlkAJAyZIVQgDlAAIArQACQOWQAkCpkgXCAO0AAgCpAAJA7ZACQK2SBcIA7QACALUAAkDxkAJAtZIFwgDxAAIAtQACQPmQAkC9kgXCAQEAAgC9AAJBAZACQMGSBcIBAQACAMEAAkEBkAJAwZINggD5AAIAwQACQPmQAkC9kgXCAQEAAgCtAAJBDZACQKGSBcIBDQACAKEAAkENkAJAoZIJogENAAIAoQACQQmQAkCpkeIBCQACAKkAAkEBkAJArZIFwgD5AAIAvQACQO2QAkC9kgXCAO0AAgC9AAJA8ZACQLWSFUIA5QACAMkAAkDlkAJAyZIFwgDxAAIArQACQO2QAkCtkgXCAO0AAgCtAAJA7ZACQK2SBcIA7QACAK0AAkDxkAJArZIFwgDxAAIAtQACQO2QAkC9kgXCAO0AAgC9AAJA7ZACQMGSDYIA5QACAMEAAkDlkAJAwZIFwgDlAAIAyQACQN2QAkDRkgXCAN0AAgDRAAJA3ZACQMmSBcIA3QACAMkAAkDlkAJAyZIFwgDlAAIAyQACQN2QAkDJkgXCAMkAAgCtAAJA2ZACQKmSBcIA3QACAKkAAkDdkAJArZIRYgEBAAIA7QACAN0AAgDZAAIAwQACAK0AA/y8A" },
-  { name: "Hino 02 — Fingerstyle", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMST4AA/1gEBAIYCAD/LwBNVHJrAAAFSniQO2QAkCtkeJA3ZHiAO0AAgCtAAJA7ZACQK2R4gDdAAJA3ZHiAO0AAgCtAAJA7ZACQK2R4gDdAAJA3ZHiAO0AAgCtAAJA8ZACQKmR4gDdAAJA3ZHiAPEAAgDdAAIAqQACQO2QAkCtkeJA3ZHiAO0AAkDtkAJAyZHiAN0AAkDdkeIA7QACQO2R4gDdAAJA3ZHiAN0AAkDlkAJAwZIFwgDlAAIAwQACQN2QAkC9kgXCAN0AAgC9AAJA3ZACQMGR4gDtAAJA8ZHiAMEAAkEBkAJAwZHiAN0AAkDdkeIA8QACAMkAAkD5kAJAyZHiAN0AAkDdkeIA+QACAK0AAkDxkAJAqZHiAN0AAkDdkeIA8QACAKkAAkDtkAJArZHiAN0AAkDdkeIAyQACQMmR4gDdAAJA3ZHiAO0AAkDtkeIA3QACQN2R4gDtAAIAwQACQPGQAkC1keIA3QACQN2R4gDxAAIAtQACQPmQAkC9keIA3QACQN2R4gEBAAIAvQACQQ2QAkC9keIA3QACQN2R4gENAAIAvQACQQ2QAkC9keIA3QACQN2R4gENAAIAyQACQQmQAkDJkeIA3QACQOWR4gEJAAIAvQACQQmQAkDBkeIA5QACQN2R4gEJAAJBCZHiAN0AAkDdkeIBCQACAMEAAkEBkAJAwZHiAN0AAkDdkeIA+QACAMEAAkD5kAJAvZHiAN0AAkDdkeIA+QACAL0AAkDxkAJAtZHiAN0AAkDdkeIA8QACAK0AAkD5kAJAqZHiAN0AAkDdkeIA+QACAKkAAkDtkAJArZIFwgDdAAIAyQACQN2QAkDRkgXCAN0AAgDRAAJA5ZACQMmR4gDtAAJA+ZHiAOUAAkDlkeIA+QACQPmR4gDlAAJA5ZHiAPkAAkD5keIA5QACAK0AAkDlkAJAqZHiAMkAAkDJkeIA+QACAKkAAkDtkAJArZHiAOUAAkDdkeIA7QACALUAAkDxkAJAtZHiAN0AAkDdkeIA8QACALUAAkD5kAJAvZHiAN0AAkDdkeIBAQACAL0AAkEBkAJAwZHiAN0AAkDdkeIBAQACAMEAAkEBkAJAwZHiAN0AAkDdkeIBAQACQQGR4gDdAAJA3ZHiAPkAAgDBAAJA+ZACQL2R4gDdAAJA3ZHiAQEAAgCtAAJBDZACQKGR4gDdAAJA3ZHiAQ0AAgChAAJBDZACQKGR4gDdAAJA3ZHiAQ0AAkENkeIBDQACAKEAAkEJkAJAqZHiAQkAAgCpAAJBAZACQK2R4gDdAAJA3ZHiAPkAAgC9AAJA7ZACQL2R4gDdAAJA3ZHiAO0AAgC9AAJA8ZACQLWR4gDdAAJA5ZHiAPEAAkDxkeIA5QACQOWR4gDxAAJA8ZIFwgDlAAIAyQACQOWQAkDJkgXCAPEAAgCtAAJA7ZACQK2R4gDlAAJA3ZHiAO0AAgCtAAJA7ZACQK2R4gDdAAJA3ZHiAO0AAgCtAAJA8ZACQK2R4gDdAAJA3ZHiAPEAAgC1AAJA7ZACQL2R4gDdAAJA3ZHiAO0AAgC9AAJA7ZACQMGSDYIA3QACAMEAAkDlkAJAwZIFwgDlAAIAyQACQN2QAkDRkgXCAN0AAgDRAAJA3ZACQMmSBcIA3QACAMkAAkDlkAJAyZIFwgDlAAIAyQACQN2QAkDJkgXCAMkAAgCtAAJA2ZACQKmSBcIA3QACAKkAAkDdkAJArZHiAO0AAkDtkeIA7QACQPmR4gD5AAJA7ZHiAQEAAgDtAAIA3QACAK0AAkENkAJA+ZACQN2QAkCtkgXCAQ0AAgD5AAIA3QACANkAAgDBAAIArQAD/LwA=" },
-  { name: "Hino 247", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMW42AA/1gEBAIYCAD/LwBNVHJrAAACU3iQQGSCaIBAQACQQGR4gEBAAJBBZHiAQUAAkEBkeJA+ZIJogD5AAJA+ZIJogD5AAJA8ZINggDxAAJA8ZHiAPEAAkD5keIA+QACQPGR4gDxAAJA7ZIVQkDlkgmiAOUAAkDlkeIA7QACQO2R4gDtAAJA8ZHiAOUAAkDdkgmiAPEAAkDxkgmiAPEAAkD5kgmiAPkAAkD5keIA+QACQPGR4gDxAAJA+ZHiAQEAAkEBkhVCAQEAAkEBkgmiAQEAAkEBkeIBAQACQQWR4gEFAAJBAZHiAPkAAkD5kgmiAPkAAkD5kgmiAPkAAkDxkgmiAPEAAkDxkeIA8QACQPmR4gD5AAJA8ZHiAPEAAkDtkhVCAN0AAkDlkgmiAOUAAkDlkeIA7QACQO2R4gDtAAJA8ZHiAOUAAkDdkgmiAPEAAkDxkgmiAQEAAkEBkgmiAPEAAkD5keIA+QACQPGR4gDxAAJA+ZHiAPkAAkDxkhVCAN0AAkDdkgXCAN0AAkDdkeIA3QACQN2R4gDdAAJA5ZHiAOUAAkDdkeIA3QACQN2SCaIA8QACQPGSCaIA8QACQPmSBcIA+QACQPmR4gD5AAJA+ZHiAPkAAkDxkeIA8QACQPmR4gEBAAJBAZIJogD5AAJA8ZIJogDxAAJA8ZIFwgDxAAJA8ZHiAPEAAkDxkeIA8QACQO2R4gDdAAJA5ZHiAOUAAkDdkgmiAO0AAkDxkgmiAQEAAkEBkgmiAPEAAkD5keIA+QACQPGR4gDxAAJA+ZHiAPkAAkDxkhVCAQEAAgDxAAIA3QAD/LwA=" },
-  { name: "Hino 247 — com Baixo", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMW42AA/1gEBAIYCAD/LwBNVHJrAAAEc3iQQGQAkDBkgmiAQEAAgDBAAJBAZACQMGR4gEBAAJBBZHiAQUAAkEBkeJA+ZACQK2SCaIA+QACAMEAAkD5kAJAvZIJogD5AAIAvQACQPGQAkC1kg2CAPEAAgC1AAJA8ZACQLWR4gDxAAJA+ZHiAPkAAkDxkeIA8QACAK0AAkDtkAJAoZIJogC1AAJAvZIJogChAAJA5ZACQKWSCaIA5QACAKUAAkDlkAJApZHiAO0AAkDtkeIA7QACQPGR4gDlAAIAvQACQN2QAkDBkgmiAPEAAgDBAAJA8ZACQLWSCaIA8QACAKUAAkD5kAJArZIJogD5AAIArQACQPmQAkCtkeIA+QACALUAAkDxkAJAtZHiAPEAAgC1AAJA+ZACQL2R4gEBAAIAvQACQQGQAkDBkhVCAQEAAgDBAAJBAZACQMGSCaIBAQACAMEAAkEBkAJAwZHiAQEAAkEFkeIBBQACQQGR4gD5AAIArQACQPmQAkCtkgmiAPkAAgDBAAJA+ZACQL2SCaIA+QACAL0AAkDxkAJAtZIJogDxAAIAtQACQPGQAkC1keIA8QACQPmR4gD5AAJA8ZHiAPEAAgCtAAJA7ZACQKGSCaIAtQACQL2SCaIA3QACAKEAAkDlkAJApZIJogDlAAIApQACQOWQAkClkeIA7QACQO2R4gDtAAJA8ZHiAOUAAgC9AAJA3ZACQMGSBcIAwQACQL2R4gDxAAIAvQACQPGQAkC1kgmiAQEAAgClAAJBAZACQK2SCaIA8QACAK0AAkD5kAJArZHiAPkAAgC1AAJA8ZACQLWR4gDxAAIAtQACQPmQAkC9keIA+QACAL0AAkDxkAJAwZHiAN0AAkDdkeJA0ZHiAMEAAkDBkgmiAN0AAgDBAAJA3ZACQMGSBcIA3QACQN2R4gDdAAIAwQACQN2QAkDBkeIA3QACQOWR4gDlAAJA3ZHiAN0AAgDBAAJA3ZACQMGSCaIA8QACAMEAAkDxkAJAwZHiAMEAAkC9keIAvQACQLWR4gDxAAIArQACQPmQAkCtkgXCAPkAAkD5keIA+QACAK0AAkD5kAJArZHiAPkAAgC1AAJA8ZACQLWR4gDxAAIAtQACQPmQAkC9keIBAQACAL0AAkEBkAJAwZIJogD5AAIAwQACQPGQAkDBkeIAwQACQL2R4gCtAAJArZHiAPEAAgCtAAJA8ZACQKWSBcIA8QACQPGR4gDxAAIApQACQPGQAkClkeIA8QACQO2R4gDdAAJA5ZHiAOUAAgC9AAJA3ZACQMGSBcIAwQACQL2R4gDtAAIAvQACQPGQAkC1kgmiAQEAAgClAAJBAZACQK2SCaIA8QACAK0AAkD5kAJArZHiAPkAAgC1AAJA8ZACQLWR4gDxAAIAtQACQPmQAkC9keIA+QACAL0AAkDxkAJAwZHiANEAAkDRkeIA3QACQN2R4gDxAAJA8ZHiAN0AAkDdkeIA0QACQNGR4gDBAAJAwZIJogEBAAIA8QACAN0AAgDRAAIAwQACAK0AA/y8A" },
-  { name: "Hino 247 — Fingerstyle", b64: "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" },
-  { name: "Hino 278", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMW42AA/1gEBAIYCAD/LwBNVHJrAAABYXiQO2SCaIA7QACQPGSBcIA8QACQPGR4gDxAAJA7ZIJokDdkgmiAN0AAkDdkgmiAN0AAkDlkgXCAOUAAkDlkeIA7QACQO2SCaIA7QACQO2SCaIA7QACQPGSBcIA8QACQPGR4gDxAAJA7ZIJogDlAAJA3ZIJogDdAAJA5ZIJogDtAAJA7ZIFwgDlAAJA5ZHiAOUAAkDdkhVCAO0AAkDxkgmiAPEAAkDxkgXCAPEAAkDxkeIA8QACQPGSBcIA8QACQO2R4gDtAAJA7ZIJogDtAAJA+ZIJogDdAAJA5ZIFwgD5AAJA8ZHiAPEAAkDxkgXCAPEAAkDtkeIA7QACQO2SCaIA5QACQN2SCaIA3QACQN2SBcIA3QACQN2R4gDdAAJA3ZIFwgDdAAJA5ZHiAO0AAkDtkgmiAO0AAkDtkgmiAO0AAkDtkgXCAOUAAkDlkeIA5QACQN2SFUIA7QACAN0AA/y8A" },
-  { name: "Hino 278 — com Baixo", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMW42AA/1gEBAIYCAD/LwBNVHJrAAADB3iQO2QAkCtkgmiAO0AAgCtAAJA8ZACQK2SBcIA8QACQPGR4gDxAAIArQACQO2QAkCtkgmiAK0AAkDdkAJArZIJogDdAAJA3ZACQL2SCaIA3QACQOWQAkDJkgXCAOUAAgCtAAJA5ZACQKmR4gDtAAIAqQACQO2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAO0AAgCtAAJA7ZACQK2SCaIA7QACAK0AAkDxkAJArZIFwgDxAAJA8ZHiAPEAAgCtAAJA7ZACQK2SCaIA5QACAK0AAkDdkAJArZHiAL0AAkC1keIAtQACQL2R4gDdAAIAyQACQOWQAkDJkgmiAO0AAgDJAAJA7ZACQMmR4gCtAAJAoZHiAOUAAgChAAJA5ZACQKmR4gDlAAIAqQACQN2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAN0AAkDdkeIAyQACQMmR4gDJAAIAvQACQL2R4gDtAAIAvQACQPGQAkDBkgmiAPEAAgDBAAJA8ZACQMGSBcIA8QACQPGR4gDxAAIArQACQPGQAkCtkgXCAPEAAkDtkeIA7QACAK0AAkDtkAJArZHiAMEAAkC1keIAtQACQL2R4gDtAAJA+ZACQMmSCaIA3QACAMkAAkDlkAJAyZHiAK0AAkChkeIA+QACAKEAAkDxkAJAqZHiAPEAAgCpAAJA8ZACQK2SBcIA8QACQO2R4gDtAAIArQACQO2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAOUAAgCtAAJA3ZACQK2SCaIA3QACAL0AAkDdkAJAtZIFwgDdAAIAtQACQN2QAkC9keIA3QACAL0AAkDdkAJAwZHiAMEAAkC9keIA3QACAL0AAkDlkAJAtZHiAO0AAgCtAAJA7ZACQK2R4gC1AAJAtZHiALUAAkC9keIA7QACAMkAAkDtkAJAyZIJogDtAAIAyQACQO2QAkDJkeIArQACQKGR4gDlAAIAoQACQOWQAkCpkeIA5QACAKkAAkDdkAJArZIVQgDtAAIA3QACAMkAAgC9AAIArQAD/LwA=" },
-  { name: "Hino 278 — Fingerstyle", b64: "TVRoZAAAAAYAAQACAeBNVHJrAAAAEwD/UQMW42AA/1gEBAIYCAD/LwBNVHJrAAAD9XiQO2QAkCtkeJA3ZHiQMmR4gDtAAIArQACQPGQAkCtkeIA3QACQN2R4gDxAAJA8ZHiAPEAAgCtAAJA7ZACQK2R4gDdAAJA3ZHiAMkAAkDJkeIA3QACAK0AAkDdkAJArZHiAMkB4kDJkeIA3QACQN2QAkC9keIAyQACQMmR4gDdAAJA3ZHiAN0AAgDJAAJA5ZACQMmR4gDJAAJAyZHiAOUAAgCtAAJA5ZACQKmR4gDtAAIAqQACQO2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAO0AAgCtAAJA7ZACQK2R4gDlAAJA3ZHiAMkAAkDJkeIA7QACAK0AAkDxkAJArZHiAN0AAkDdkeIA8QACQPGR4gDxAAIArQACQO2QAkCtkeIA3QACQN2R4gDJAAJAyZHiAN0AAgCtAAJA3ZACQK2R4gC9AAJAtZHiALUAAkC9keIA3QACAMkAAkDlkAJAyZHiAMkAAkDJkeIA5QACQOWR4gDtAAIAyQACQO2QAkDJkeIA5QACAK0AAkDdkAJAoZHiAN0AAgChAAJA5ZACQKmR4gDlAAIAqQACQN2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAN0AAkDdkeIAyQACQMmR4gDJAAIAvQACQL2R4gDtAAIAvQACQPGQAkDBkeIA3QACQN2R4kDRkeIA8QACAMEAAkDxkAJAwZHiAN0AAkDdkeIA8QACQPGR4gDxAAIArQACQPGQAkCtkeIA3QACQN2R4gDxAAJA7ZHiAO0AAgCtAAJA7ZACQK2R4gDBAAJAtZHiALUAAkC9keIA7QACANEAAkD5kAJAyZHiAN0AAkDlkeIAyQACQMmR4gDlAAIAyQACQOWQAkDJkeIArQACQKGR4gD5AAIAoQACQPGQAkCpkeIA8QACAKkAAkDxkAJArZHiAOUAAkDdkeIA8QACQO2R4gDtAAIArQACQO2QAkCtkeIAvQACQL2R4gDJAAJAyZHiAN0AAgCtAAJA3ZACQK2R4gDJAeJAyZHiAN0AAgC9AAJA3ZACQLWR4gDJAAJAyZHiAN0AAgC1AAJA3ZACQL2R4gDdAAIAvQACQN2QAkDBkeIAwQACQL2R4gDdAAIAvQACQOWQAkC1keIA7QACAK0AAkDtkAJArZHiALUAAkC1keIAtQACQL2R4gDtAAIAyQACQO2QAkDJkeIA5QACQN2R4gDJAAJAyZHiAO0AAgDJAAJA7ZACQMmR4gCtAAJAoZHiAN0AAgChAAJA5ZACQKmR4gDlAAIAqQACQN2QAkCtkeIA7QACQO2R4gDtAAJA+ZHiAK0AAkENkAJArZIJogENAAIA+QACAN0AAgDJAAIAvQACAK0AA/y8A" }
-];
+// ══════════════════════════════════════════════════════
+// BIBLIOTECA DE HINOS — 480 hinos em 3 versões (gerados pelo Violão Bounce)
+//   s = só soprano · b = soprano + baixo · a = soprano + acompanhamento (dedilhado)
+// Cada hino é um arquivo hinos/NNN.json carregado na hora de jogar.
+// Notas: [tempo_ms, corda, casa, tempo_ms, corda, casa, ...] (corda 0 = Mi grave … 5 = Mi agudo)
+// ══════════════════════════════════════════════════════
+const VERSIONS = {
+  s: { short: 'Soprano',          icon: '🎼' },
+  b: { short: 'Soprano + Baixo',  icon: '🎸' },
+  a: { short: 'Soprano + Acomp.', icon: '🎶' }
+};
+let HINOS = null;
+let hinoVer = 's';
+try { const v = localStorage.getItem('guitarGameCCB_ver'); if (VERSIONS[v]) hinoVer = v; } catch(e) {}
+const hinoCache = new Map();
+const pad3 = n => String(n).padStart(3, '0');
+const normTxt = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
-// ══════════════════════════════════════════════════════
-// CARREGAR BIBLIOTECA EMBUTIDA
-// ══════════════════════════════════════════════════════
-function loadLibrary() {
-  const icons = ['🎵','🎶','🎸','🎼','🎹','🎺','🎻','🎷'];
-  LIBRARY.forEach((item, i) => {
-    try {
-      const bytes = Uint8Array.from(atob(item.b64), c => c.charCodeAt(0));
-      const notesParsed = parseMIDIBytes(bytes);
-      if (!songs.find(s => s.name === item.name)) {
-        const dur = notesParsed[notesParsed.length - 1].time + 1;
-        songs.push({ name: item.name, notes: notesParsed, dur, builtin: true });
-      }
-    } catch(e) {
-      console.warn('Erro ao carregar ' + item.name + ':', e);
+function paintVersionBar() {
+  document.querySelectorAll('#verBar .ver-btn').forEach(b => b.classList.toggle('on', b.dataset.v === hinoVer));
+}
+document.getElementById('verBar').addEventListener('click', e => {
+  const b = e.target.closest('.ver-btn'); if (!b) return;
+  hinoVer = b.dataset.v;
+  try { localStorage.setItem('guitarGameCCB_ver', hinoVer); } catch(x) {}
+  paintVersionBar();
+  showToast(VERSIONS[hinoVer].icon + ' ' + VERSIONS[hinoVer].short);
+});
+
+function renderHinoList() {
+  const box = document.getElementById('hinoList');
+  if (!HINOS) { box.innerHTML = '<div class="hino-empty">Não foi possível carregar a lista de hinos.</div>'; return; }
+  const q = normTxt(document.getElementById('hinoQ').value).trim();
+  const qn = q.replace(/^0+(?=\d)/, '');
+  const list = HINOS.filter(h => !q || String(h.n) === qn || pad3(h.n).includes(q) || normTxt(h.t).includes(q));
+  if (!list.length) { box.innerHTML = '<div class="hino-empty">Nenhum hino encontrado.</div>'; return; }
+  const esc = t => String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  box.innerHTML = list.map(h =>
+    `<button type="button" class="hino-item" data-n="${h.n}"><b>${pad3(h.n)}</b><span>${esc(h.t)}</span><i>▶</i></button>`
+  ).join('');
+}
+document.getElementById('hinoQ').addEventListener('input', renderHinoList);
+document.getElementById('hinoList').addEventListener('click', e => {
+  const b = e.target.closest('.hino-item'); if (b) openHino(parseInt(b.dataset.n, 10));
+});
+
+async function loadHinoIndex() {
+  try {
+    const r = await fetch('hinos/index.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    HINOS = await r.json();
+  } catch(e) { HINOS = null; }
+  renderHinoList();
+}
+
+async function openHino(n) {
+  try {
+    let d = hinoCache.get(n);
+    if (!d) {
+      const r = await fetch('hinos/' + pad3(n) + '.json');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      d = await r.json();
+      hinoCache.set(n, d);
     }
-  });
-  renderSongList();
+    let ver = hinoVer;
+    if (!d.v[ver] || !d.v[ver].length) ver = 's';
+    const arr = d.v[ver], notesParsed = [];
+    for (let i = 0; i + 2 < arr.length; i += 3) {
+      notesParsed.push({ time: arr[i] / 1000, string: arr[i+1], fret: arr[i+2], hit: false, missed: false });
+    }
+    if (!notesParsed.length) throw new Error('hino sem notas');
+    const V = VERSIONS[ver], key = d.k && d.k[ver];
+    startSong({
+      name: pad3(n) + ' · ' + d.t + ' (' + V.short + ')',
+      hudName: pad3(n) + ' · ' + d.t,
+      sub: (key ? key + ' · ' : '') + V.short,
+      notes: notesParsed,
+      dur: notesParsed[notesParsed.length - 1].time + 1,
+      builtin: true
+    });
+    if (key) showToast('🎸 Tom: ' + key);
+  } catch(err) {
+    showToast('❌ Não foi possível carregar o hino');
+  }
 }
 
 // ══════════════════════════════════════════════════════
@@ -1157,7 +1236,9 @@ window.addEventListener('appinstalled', () => {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
-loadLibrary();
+paintVersionBar();
+renderSongList();
+loadHinoIndex();
 renderScores();
 </script>
 </body>

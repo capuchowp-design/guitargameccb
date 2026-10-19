@@ -1,8 +1,10 @@
-// Guitar Game CCB — Service Worker v1.0
-const CACHE_NAME = 'guitar-game-ccb-v2';
+// Guitar Game CCB — Service Worker v3.0
+// Mude o número do CACHE_NAME a CADA publicação nova no GitHub.
+const CACHE_NAME = 'guitar-game-ccb-v3';
 const ASSETS = [
   './index.html',
   './manifest.json',
+  './hinos/index.json',
   './icon-192x192.png',
   './icon-512x512.png',
   './apple-touch-icon.png',
